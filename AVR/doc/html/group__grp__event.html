@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.3.1"/>
+<title>TesegOS for AVR: 事件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="caslogo.png"/></td>
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">TesegOS for AVR
+   &#160;<span id="projectnumber">V1.2</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.3.1 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">宏定义</a>  </div>
+  <div class="headertitle">
+<div class="title">事件</div>  </div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:gaf2c6143d91f85e7bc58e98ff13e98de3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__grp__event.html#gaf2c6143d91f85e7bc58e98ff13e98de3">uxCreateEvent</a>(X)</td></tr>
+<tr class="memdesc:gaf2c6143d91f85e7bc58e98ff13e98de3"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个系统事件  <a href="#gaf2c6143d91f85e7bc58e98ff13e98de3">更多...</a><br/></td></tr>
+<tr class="separator:gaf2c6143d91f85e7bc58e98ff13e98de3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaca96faedf577f92a0f07b79b522b8c6c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__grp__event.html#gaca96faedf577f92a0f07b79b522b8c6c">uxWaitEvent</a>(X, Y)</td></tr>
+<tr class="memdesc:gaca96faedf577f92a0f07b79b522b8c6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">等待一个事件对象  <a href="#gaca96faedf577f92a0f07b79b522b8c6c">更多...</a><br/></td></tr>
+<tr class="separator:gaca96faedf577f92a0f07b79b522b8c6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaed9ecc59e3b9aa3f2eaee0d793edfdba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__grp__event.html#gaed9ecc59e3b9aa3f2eaee0d793edfdba">uxSetEvent</a>(X)</td></tr>
+<tr class="memdesc:gaed9ecc59e3b9aa3f2eaee0d793edfdba"><td class="mdescLeft">&#160;</td><td class="mdescRight">触发一个事件  <a href="#gaed9ecc59e3b9aa3f2eaee0d793edfdba">更多...</a><br/></td></tr>
+<tr class="separator:gaed9ecc59e3b9aa3f2eaee0d793edfdba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<p>事件 TesegOS中事件是两个任务间同步的一种机制，事件具有等待超时功能， 但等待事件的任务只能为一个。 </p>
+<h2 class="groupheader">宏定义说明</h2>
+<a class="anchor" id="gaf2c6143d91f85e7bc58e98ff13e98de3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define uxCreateEvent</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">X</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>创建一个系统事件 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">X</td><td>指向事件对象指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gaed9ecc59e3b9aa3f2eaee0d793edfdba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define uxSetEvent</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">X</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>触发一个事件 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">X</td><td>指向事件对象指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gaca96faedf577f92a0f07b79b522b8c6c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define uxWaitEvent</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">X, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">Y&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>等待一个事件对象 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">X</td><td>指向事件对象指针 </td></tr>
+    <tr><td class="paramname">Y</td><td>超时系统滴答数 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>事件触发原因，非零表示超时触发，零表示正常触发动作而返回 </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2021年 一月 15日 星期五 21:32:58 , 为 TesegOS for AVR使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.3.1
+</small></address>
+</body>
+</html>

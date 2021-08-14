@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.3.1"/>
+<title>TesegOS for AVR: 中断</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="caslogo.png"/></td>
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">TesegOS for AVR
+   &#160;<span id="projectnumber">V1.2</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.3.1 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">中断</div>  </div>
+</div><!--header-->
+<div class="contents">
+<pre class="fragment">如何编写中断函数
+</pre> <dl class="section user"><dt>系统滴答中断</dt><dd>TesegOS系统实现延时及抢占特性总是需要一个心跳例程周期性的触发，这个例程由硬件触发称之为系统滴答中断。 移植到AVR时系统滴答中断例程使用了c程序实现， 为了不让编译器在中断函数的首尾增加部分的环境保护代码，将中断函数定义为裸函数(naked),</dd></dl>
+<dl class="section note"><dt>注解</dt><dd>c程序中函数被编译时编译器首先在函数首部将所用到的寄存器压入堆栈保护起来， 在函数主体内使用这些寄存器后退出时再从堆栈恢复其内容、最后生成返回指令。要注意 的是它只是把用到寄存器保护起来，不是所有，而任务切换需要全部运行环境压入堆栈。</dd></dl>
+<p>这样函数内首先需要实现的是保存当前任务的运行环境， 接着调用函数osTickHandler为系统提供心跳信号，然后任务切换到就绪的最高优先级任务， 最后需要手动生成一个返回函数指令。</p>
+<dl class="section user"><dt>其它用户中断</dt><dd>其它普通的中断函数与前后台系统中的中断是没有区别的，只是有几点事项需要注意：<br/>
+ 1.普通中断发生时使用当前运行的任务堆栈，由于任意一个任务都有可能被中断，所以每个任务的堆栈大小应 足够应对被中断时的情况，同时应尽可能的把中断代码压缩到最少，这样对RAM的有效利用是非常有益的。<br/>
+ 2.中断和任务间的同步可以用全局的状态变量来实现，也可以通过信号量来实现，中断中调用的uxPostSem函数 会直接切换任务。使用状态变量时等待状态变量的高优先级任务可能会有些延时才会得到执行、而使用信号量时 要求所有任务的堆栈相应的略大。<br/>
+ 3.TesegOS不希望干预普通中断例程的编写形式，以此巩固它的“简洁、易用”特性，但这样做直接的后果就是不能完全应对中断嵌套的情况。 更具体的描述就是：假如中断可以嵌套，那么比系统滴答中断更高优先级的任务中无法使用TesegOS提供的导致任务切换的接口函数。<br/>
+ AVR系统进入中断时总是先关闭全局中断标志，以避免中断嵌套，使用软件的方法是可以实现中断嵌套的，但建议 尽量避免使用中断嵌套，如果必须使用中断嵌套，那么应该避免在中断函数中调用内核api。 </dd></dl>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2021年 一月 15日 星期五 21:32:58 , 为 TesegOS for AVR使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.3.1
+</small></address>
+</body>
+</html>

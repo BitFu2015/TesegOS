@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.3.1"/>
+<title>TesegOS for Cortex-M0: TesegOS实时操作系统</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="caslogo.png"/></td>
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">TesegOS for Cortex-M0
+   &#160;<span id="projectnumber">V1.2</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.3.1 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li class="current"><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">TesegOS实时操作系统 </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><dl class="section author"><dt>作者</dt><dd>芯艺工作室 - <a href="http://www.chipart.cn">http://www.chipart.cn</a></dd></dl>
+<dl class="section user"><dt>简介</dt><dd>TesegOS面向8位机或32位低端MCU而设计，是一款简单易用，资源利用率高，代码简洁、 易掌握的微型任务调度器。</dd></dl>
+<dl class="section user"><dt>任务调度策略</dt><dd>TesegOS采用抢占式任务调度策略、已准备好的高优先级任务会通过中断的方式优先得到运行， 相同优先级的任务按准备好时的时间顺序得到执行，同优先等级的任务不会互相抢占。</dd></dl>
+<dl class="section user"><dt>任务数量</dt><dd>TesegOS中不限制任务数量，最多的任务数量取决于硬件资源。</dd></dl>
+<dl class="section user"><dt>应用程序示例</dt><dd><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;uxos.h&quot;</span></div>
+<div class="line"></div>
+<div class="line"><a class="code" href="group__grp__porting.html#gaa9a20b240c90900986cbbce1f3ce717c" title="堆栈数据类型定义，对于Cortex-M0每次压栈一个字,所以定义成uint32_t">ux_stack_t</a> g_Task1Stack[128];</div>
+<div class="line">UX_TCB g_Task1Tcb;</div>
+<div class="line"><span class="keywordtype">void</span> Task1(<span class="keywordtype">void</span>)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keywordflow">while</span>(1)</div>
+<div class="line">    {</div>
+<div class="line">            <span class="comment">//...</span></div>
+<div class="line">    }</div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"><a class="code" href="group__grp__porting.html#gaa9a20b240c90900986cbbce1f3ce717c" title="堆栈数据类型定义，对于Cortex-M0每次压栈一个字,所以定义成uint32_t">ux_stack_t</a> g_Task2Stack[128];</div>
+<div class="line">UX_TCB g_Task2Tcb;</div>
+<div class="line"><span class="keywordtype">void</span> Task2(<span class="keywordtype">void</span>)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keywordflow">while</span>(1)</div>
+<div class="line">    {</div>
+<div class="line">            <span class="comment">//...</span></div>
+<div class="line">    }</div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">void</span>)</div>
+<div class="line">{</div>
+<div class="line">    <span class="comment">//硬件初始化</span></div>
+<div class="line">    <span class="comment">//...</span></div>
+<div class="line">    </div>
+<div class="line">    <span class="comment">//创建任务及其它内核对象</span></div>
+<div class="line">    <a class="code" href="group__grp__task.html#ga5c0b0be8619eefb6b42f88a945445a1d" title="创建一个任务">uxCreateTask</a>(&amp;g_Task1Tcb,Task1,g_Task1Stack+127,2);</div>
+<div class="line">    <a class="code" href="group__grp__task.html#ga5c0b0be8619eefb6b42f88a945445a1d" title="创建一个任务">uxCreateTask</a>(&amp;g_Task2Tcb,Task2,g_Task2Stack+127,2);</div>
+<div class="line">    </div>
+<div class="line">    <a class="code" href="group__grp__task.html#ga03560f07a5652d447b1c2e432176790f" title="系统开始运行">uxStart</a>(); <span class="comment">//调用此函数后不可再创建任务</span></div>
+<div class="line">    </div>
+<div class="line">    <span class="comment">//以下的代码作为默认任务(DefaultTask)运行，默认任务有如下特性：</span></div>
+<div class="line">    <span class="comment">//1.默认任务在开发环境启动代码配置的堆栈下运行，建议应用程序的主代码在此任务下执行</span></div>
+<div class="line">    <span class="comment">//2.默认任务的优先级为 1,仅高于空闲任务</span></div>
+<div class="line"></div>
+<div class="line">    <span class="keywordflow">while</span>(1)</div>
+<div class="line">    {</div>
+<div class="line">            <span class="comment">//...</span></div>
+<div class="line">    }</div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"><span class="comment">//空闲任务(IDLE)执行函数，空闲任务有如下特性：</span></div>
+<div class="line"><span class="comment">//1.空闲任务中不可调用等待信号，延时等使系统切换任务的api函数</span></div>
+<div class="line"><span class="comment">//2.空闲任务优先级为最低(值为0)</span></div>
+<div class="line"><span class="comment">//3.系统具有默认的空闲任务执行函数，当不需要时可删除此函数</span></div>
+<div class="line"><span class="keywordtype">void</span> <a class="code" href="group__grp__porting.html#ga269a2b542c489c0d00dd5d4328ed6ccf" title="空闲任务处理函数">IdleTask</a>(<span class="keywordtype">void</span>)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keywordflow">while</span>(1)</div>
+<div class="line">    {</div>
+<div class="line">            <span class="comment">//...</span></div>
+<div class="line">    }</div>
+<div class="line">}   </div>
+</div><!-- fragment --> </dd></dl>
+</div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2021年 一月 15日 星期五 21:37:29 , 为 TesegOS for Cortex-M0使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.3.1
+</small></address>
+</body>
+</html>

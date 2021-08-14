@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.3.1"/>
+<title>TesegOS for Cortex-M0: 任务</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="caslogo.png"/></td>
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">TesegOS for Cortex-M0
+   &#160;<span id="projectnumber">V1.2</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.3.1 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle">
+<div class="title">任务</div>  </div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:ga5c0b0be8619eefb6b42f88a945445a1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__grp__task.html#ga5c0b0be8619eefb6b42f88a945445a1d">uxCreateTask</a> (PUX_TCB pTCB, void(*fn)(void), <a class="el" href="group__grp__porting.html#gaa9a20b240c90900986cbbce1f3ce717c">ux_stack_t</a> *stack, uint8_t priority)</td></tr>
+<tr class="memdesc:ga5c0b0be8619eefb6b42f88a945445a1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个任务  <a href="#ga5c0b0be8619eefb6b42f88a945445a1d">更多...</a><br/></td></tr>
+<tr class="separator:ga5c0b0be8619eefb6b42f88a945445a1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafee7874723dda859ae410e5a9cc4c4a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__grp__task.html#gafee7874723dda859ae410e5a9cc4c4a1">uxDelayTask</a> (uint16_t n)</td></tr>
+<tr class="memdesc:gafee7874723dda859ae410e5a9cc4c4a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">当前任务延时  <a href="#gafee7874723dda859ae410e5a9cc4c4a1">更多...</a><br/></td></tr>
+<tr class="separator:gafee7874723dda859ae410e5a9cc4c4a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga03560f07a5652d447b1c2e432176790f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__grp__task.html#ga03560f07a5652d447b1c2e432176790f">uxStart</a> (void)</td></tr>
+<tr class="memdesc:ga03560f07a5652d447b1c2e432176790f"><td class="mdescLeft">&#160;</td><td class="mdescRight">系统开始运行  <a href="#ga03560f07a5652d447b1c2e432176790f">更多...</a><br/></td></tr>
+<tr class="separator:ga03560f07a5652d447b1c2e432176790f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<pre class="fragment">任务需要在入口函数(main)中创建，必须在调用uxStart前创建好
+TesegOS内置两个特殊任务DefaultTask和IdleTask
+</pre><dl class="section user"><dt>默认任务DefaultTask</dt><dd>DefaultTask 即是入口函数(main)执行的内容,为此main函数的最后必须是个 无限循环（不可退出），DefaultTask使用的是开发环境启动代码配置的堆栈， 通常这是最不易溢出的情况，在有限RAM资源的MCU来说这是安全利用RAM资源 很有效的方式。</dd></dl>
+<dl class="section user"><dt>空闲任务IdleTask</dt><dd>IdleTask 在系统内核中创建，用于在调度器发现没有其它准备好的任务时执行， IdleTask的执行函数在系统内核中已定义，但用户可在应用中重写来执行CPU空闲时 的非重要任务，但需要注意的是，IdleTask中试图切换任务可导致系统崩溃， 为此IdleTask中不可调用系统提供的等待、延时等导致主动放弃CPU执行权的api函数。</dd></dl>
+<dl class="section user"><dt>任务优先级</dt><dd>TesegOS任务优先级可设置范围是0~255,数值越高优先级越高。DefaultTask的优先级为1 IdleTask任务的优先级为0,如果用户创建的任务优先级为0，就会导致无法得到cpu执行 权的情况，因为同样0优先级的IdleTask任务永远不会主动放弃cpu执行权。所以 一般用户新建任务使用的优先级为2,3,4...等。 </dd></dl>
+<h2 class="groupheader">函数说明</h2>
+<a class="anchor" id="ga5c0b0be8619eefb6b42f88a945445a1d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uxCreateTask </td>
+          <td>(</td>
+          <td class="paramtype">PUX_TCB&#160;</td>
+          <td class="paramname"><em>pTCB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void(*)(void)&#160;</td>
+          <td class="paramname"><em>fn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__grp__porting.html#gaa9a20b240c90900986cbbce1f3ce717c">ux_stack_t</a> *&#160;</td>
+          <td class="paramname"><em>stack</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>priority</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>创建一个任务 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pTCB</td><td>任务对象 </td></tr>
+    <tr><td class="paramname">fn</td><td>任务执行函数，原型为 void xxx(void) </td></tr>
+    <tr><td class="paramname">stack</td><td>任务堆栈在RAM中的位置 </td></tr>
+    <tr><td class="paramname">priority</td><td>优先级(1~255) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gafee7874723dda859ae410e5a9cc4c4a1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uxDelayTask </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>当前任务延时 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>延时的系统滴答周期 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga03560f07a5652d447b1c2e432176790f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uxStart </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>系统开始运行 </p>
+<dl class="section note"><dt>注解</dt><dd>一般在入口函数(main)中调用，在调用前创建任务，调用后不可再创建任何任务 </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2021年 一月 15日 星期五 21:37:29 , 为 TesegOS for Cortex-M0使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.3.1
+</small></address>
+</body>
+</html>

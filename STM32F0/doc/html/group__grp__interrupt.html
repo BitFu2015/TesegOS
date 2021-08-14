@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.3.1"/>
+<title>TesegOS for Cortex-M0: 中断</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="caslogo.png"/></td>
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">TesegOS for Cortex-M0
+   &#160;<span id="projectnumber">V1.2</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.3.1 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">中断</div>  </div>
+</div><!--header-->
+<div class="contents">
+<pre class="fragment">如何编写中断函数
+</pre> <dl class="section user"><dt>系统滴答中断与PendSV中断</dt><dd>arm内核设计之初充分考虑了RTOS运行问题，例如以下面这三个功能<br/>
+ 1.集成的系统定时器SysTick <br/>
+ 2.双堆栈寄存器结构 <br/>
+ 3.软件触发中断机制 <br/>
+ ARM集成的系统定时器典型用途就是产生系统滴答中断，由于任务切换在PendSV中断中完成的，所以系统滴答中断与普通的 中断函数无任可特殊。<br/>
+ PendSV中断是任务或中断将自己想切换任务意愿通知系统的最理想的方式，尤其在中断函数中可以告诉系统：等我退出后请切换一下任务。 为了实现这样一个逻辑PendSV的优先级必须是最低的，其次是实现抢占逻辑的SysTick中断。实际上这两个中断只要实现互不嵌套就可以 ，所以通常他们的优先级设置成一样，即最低。</dd></dl>
+<dl class="section user"><dt>普通的用户中断例程</dt><dd>其它普通的中断函数与前后台系统中的中断是没有区别的，只是有几点事项需要注意：<br/>
+ 1.所有中断都使用系统栈，栈大小由SYS_STACK_SIZE定义。<br/>
+ 2.中断和任务间的同步可以用全局的状态变量来实现，也可以通过信号量来实现，中断中调用的uxPostSem函数 会直接切换任务。使用状态变量时等待状态变量的高优先级任务可能会有些延时才会得到执行。<br/>
+ 3.由于采用了PendSV中断切换任务机制,加上所有中断都自动使用专用栈，中断嵌套貌似没有任何问题。</dd></dl>
+<dl class="section user"><dt>UX_ENTER_CRITICAL与UX_EXIT_CRITICAL</dt><dd>进入临界状态（不会被中断）和退出函数，这两个函数需要成对使用，来处理不能被中断的任务。无论在任务还是在普通 中断中使用，都未发现什么问题，但是为了保证系统和谐特性应少用临界段，在必须使用的前提下应保证其内的代码足够 短（占用时间短）。<br/>
+ 理论上UX_ENTER_CRITICAL与UX_EXIT_CRITICAL的实现就是关和开全局中断的过程。但考虑到用户无意中将其嵌套使用，在两个 函数的实现上做一个嵌套计数器，以保证只有在最外层的UX_EXIT_CRITICAL被调用时才打开中断，毕竟系统api函数也需要进入 临界段，嵌套进入临界段也是个大概率事件。 </dd></dl>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2021年 一月 15日 星期五 21:37:29 , 为 TesegOS for Cortex-M0使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.3.1
+</small></address>
+</body>
+</html>

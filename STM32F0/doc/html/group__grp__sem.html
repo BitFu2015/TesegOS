@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.3.1"/>
+<title>TesegOS for Cortex-M0: 信号量</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="caslogo.png"/></td>
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">TesegOS for Cortex-M0
+   &#160;<span id="projectnumber">V1.2</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.3.1 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">宏定义</a>  </div>
+  <div class="headertitle">
+<div class="title">信号量</div>  </div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:ga30c5b9f6ea877cdb92e6886b598f7b0e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__grp__sem.html#ga30c5b9f6ea877cdb92e6886b598f7b0e">uxCreateSem</a>(X, Y)</td></tr>
+<tr class="memdesc:ga30c5b9f6ea877cdb92e6886b598f7b0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">　创建一个系统信号量  <a href="#ga30c5b9f6ea877cdb92e6886b598f7b0e">更多...</a><br/></td></tr>
+<tr class="separator:ga30c5b9f6ea877cdb92e6886b598f7b0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga354dc3d0e8ae11caa455966d6bc438cd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__grp__sem.html#ga354dc3d0e8ae11caa455966d6bc438cd">uxPendSem</a>(X)</td></tr>
+<tr class="memdesc:ga354dc3d0e8ae11caa455966d6bc438cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">　请求一个信号量  <a href="#ga354dc3d0e8ae11caa455966d6bc438cd">更多...</a><br/></td></tr>
+<tr class="separator:ga354dc3d0e8ae11caa455966d6bc438cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga32a578ada9377550d0b1ba26c353f38d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__grp__sem.html#ga32a578ada9377550d0b1ba26c353f38d">uxPostSem</a>(X)</td></tr>
+<tr class="memdesc:ga32a578ada9377550d0b1ba26c353f38d"><td class="mdescLeft">&#160;</td><td class="mdescRight">　向信号量释放一个请求权限  <a href="#ga32a578ada9377550d0b1ba26c353f38d">更多...</a><br/></td></tr>
+<tr class="separator:ga32a578ada9377550d0b1ba26c353f38d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab47a49575f2bf4d3098c2ee7303a05b8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__grp__sem.html#gab47a49575f2bf4d3098c2ee7303a05b8">uxAcceptSem</a>(X)</td></tr>
+<tr class="memdesc:gab47a49575f2bf4d3098c2ee7303a05b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">　无等待的请求信号量  <a href="#gab47a49575f2bf4d3098c2ee7303a05b8">更多...</a><br/></td></tr>
+<tr class="separator:gab47a49575f2bf4d3098c2ee7303a05b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<p>信号量是在两个或多个任务请求多个资源时提供分配和等待机制。 </p>
+<h2 class="groupheader">宏定义说明</h2>
+<a class="anchor" id="gab47a49575f2bf4d3098c2ee7303a05b8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define uxAcceptSem</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">X</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>　无等待的请求信号量 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">X</td><td>指向信号量对象指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>UXC_DONE:表示为本次请求释放了一个信号 UXC_PEND:无可释放信号　UXC_WAIT:有其它任务也在等待此信号量 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ga30c5b9f6ea877cdb92e6886b598f7b0e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define uxCreateSem</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">X, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">Y&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>　创建一个系统信号量 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">X</td><td>指向信号量对象指针 </td></tr>
+    <tr><td class="paramname">Y</td><td>可同时执行的任务个数 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga354dc3d0e8ae11caa455966d6bc438cd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define uxPendSem</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">X</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>　请求一个信号量 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">X</td><td>指向信号量对象指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga32a578ada9377550d0b1ba26c353f38d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define uxPostSem</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">X</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>　向信号量释放一个请求权限 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">X</td><td>指向信号量对象指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2021年 一月 15日 星期五 21:37:29 , 为 TesegOS for Cortex-M0使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.3.1
+</small></address>
+</body>
+</html>
